@@ -1,0 +1,13 @@
+(function () {
+    var CUSTOM_FACTOR = 28;
+
+    var comp = app.project.activeItem;
+    if (!(comp instanceof CompItem)) return;
+
+    var rf = comp.resolutionFactor;
+    var isFull = (rf[0] === 1 && rf[1] === 1);
+
+    app.beginUndoGroup(isFull ? "Custom Resolution" : "Full Resolution");
+    comp.resolutionFactor = isFull ? [CUSTOM_FACTOR, CUSTOM_FACTOR] : [1, 1];
+    app.endUndoGroup();
+})();
